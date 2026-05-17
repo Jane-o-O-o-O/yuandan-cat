@@ -3,28 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🐱 元旦的小窝</title>
+    <title>元旦的小窝</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Noto+Sans+SC:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --warm: #FFF8F0;
-            --cream: #FFF3E4;
-            --orange: #F4845F;
-            --brown: #8B5E3C;
-            --dark: #3D2B1F;
-            --soft-pink: #FFE4E1;
-            --gold: #FFD700;
+            --bg: #FDFBF7;
+            --bg-warm: #FFF9F0;
+            --cream: #FFF5E6;
+            --peach: #FFE8D6;
+            --orange: #E07C4E;
+            --orange-light: #F4A261;
+            --brown: #5C3D2E;
+            --brown-light: #8B6F5E;
+            --brown-dark: #3D2518;
+            --pink: #F2D7D5;
+            --gold: #D4A853;
+            --white: #FFFFFF;
+            --shadow: rgba(92, 61, 46, 0.08);
+            --shadow-md: rgba(92, 61, 46, 0.12);
         }
 
         body {
-            font-family: 'Noto Sans SC', sans-serif;
-            background: var(--warm);
-            color: var(--dark);
+            font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--brown-dark);
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
+
+        /* ===== SVG Icon Base ===== */
+        .icon {
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            vertical-align: middle;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .icon-filled {
+            fill: currentColor;
+            stroke: none;
+        }
+
+        /* ===== Navigation ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            background: rgba(253, 251, 247, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(92, 61, 46, 0.06);
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        nav .logo {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--brown);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        nav .logo svg { width: 22px; height: 22px; stroke: var(--orange); }
+
+        nav .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        nav .nav-links a {
+            text-decoration: none;
+            color: var(--brown-light);
+            font-size: 0.9rem;
+            font-weight: 400;
+            transition: color 0.3s;
+        }
+
+        nav .nav-links a:hover { color: var(--orange); }
 
         /* ===== Hero Section ===== */
         .hero {
@@ -34,374 +104,625 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            background: linear-gradient(180deg, var(--cream) 0%, var(--warm) 100%);
             position: relative;
-            padding: 2rem;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: radial-gradient(circle at 20% 30%, rgba(244,132,95,0.08) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 70%, rgba(255,215,0,0.06) 0%, transparent 50%);
-        }
-
-        .hero-content { position: relative; z-index: 1; }
-
-        .cat-emoji {
-            font-size: 5rem;
-            animation: bounce 2s ease-in-out infinite;
-            margin-bottom: 1rem;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-
-        .hero h1 {
-            font-family: 'Noto Serif SC', serif;
-            font-size: 3.5rem;
-            color: var(--brown);
-            margin-bottom: 0.5rem;
-            letter-spacing: 0.1em;
-        }
-
-        .hero .subtitle {
-            font-size: 1.2rem;
-            color: var(--orange);
-            font-weight: 300;
-            margin-bottom: 2rem;
-        }
-
-        .hero .tagline {
-            font-family: 'Noto Serif SC', serif;
-            font-size: 1.1rem;
-            color: var(--brown);
-            opacity: 0.7;
-            max-width: 500px;
-            line-height: 1.8;
-        }
-
-        .scroll-hint {
-            position: absolute;
-            bottom: 2rem;
-            animation: float 2s ease-in-out infinite;
-            font-size: 1.5rem;
-            opacity: 0.5;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(10px); }
-        }
-
-        /* ===== Photo Gallery ===== */
-        .gallery {
-            padding: 4rem 2rem;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-family: 'Noto Serif SC', serif;
-            font-size: 2rem;
-            text-align: center;
-            color: var(--brown);
-            margin-bottom: 2.5rem;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 3px;
-            background: var(--orange);
-            margin: 0.8rem auto 0;
-            border-radius: 2px;
-        }
-
-        .photo-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .photo-card {
-            border-radius: 16px;
+            padding: 6rem 2rem 4rem;
             overflow: hidden;
-            box-shadow: 0 4px 20px rgba(139,94,60,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            background: white;
-            aspect-ratio: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
-        .photo-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(139,94,60,0.2);
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(ellipse 600px 400px at 25% 20%, rgba(224, 124, 78, 0.06) 0%, transparent 70%),
+                radial-gradient(ellipse 500px 350px at 75% 60%, rgba(212, 168, 83, 0.05) 0%, transparent 70%),
+                radial-gradient(ellipse 300px 300px at 50% 80%, rgba(242, 215, 213, 0.15) 0%, transparent 70%);
+            z-index: 0;
         }
 
-        .photo-card img {
+        /* Floating paw prints decoration */
+        .paw-deco {
+            position: absolute;
+            opacity: 0.04;
+            z-index: 0;
+        }
+
+        .paw-deco svg { width: 60px; height: 60px; fill: var(--brown); }
+
+        .paw-deco:nth-child(1) { top: 15%; left: 10%; transform: rotate(-25deg); }
+        .paw-deco:nth-child(2) { top: 25%; right: 15%; transform: rotate(15deg); }
+        .paw-deco:nth-child(3) { bottom: 20%; left: 20%; transform: rotate(-10deg); }
+        .paw-deco:nth-child(4) { bottom: 30%; right: 10%; transform: rotate(30deg); }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+        }
+
+        .hero-avatar {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 2rem;
+            border: 4px solid var(--white);
+            box-shadow: 0 8px 40px var(--shadow-md);
+            animation: avatarFloat 4s ease-in-out infinite;
+        }
+
+        .hero-avatar img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        .photo-card .placeholder {
-            font-size: 4rem;
-            opacity: 0.3;
+        @keyframes avatarFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .hero h1 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 3.8rem;
+            font-weight: 700;
+            color: var(--brown);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.15em;
+        }
+
+        .hero .meta {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--brown-light);
+            font-size: 0.95rem;
+        }
+
+        .hero .meta .dot {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: var(--orange-light);
+        }
+
+        .hero .meta svg { width: 16px; height: 16px; stroke: var(--orange); }
+
+        .hero .tagline {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.05rem;
+            line-height: 2;
+            color: var(--brown-light);
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--brown-light);
+            opacity: 0.4;
+            animation: scrollBounce 2s ease-in-out infinite;
+        }
+
+        .scroll-indicator svg { width: 20px; height: 20px; stroke: var(--brown-light); }
+
+        @keyframes scrollBounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(8px); }
+        }
+
+        /* ===== Section Shared ===== */
+        section {
+            padding: 5rem 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header .label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 0.8rem;
+        }
+
+        .section-header .label svg { width: 14px; height: 14px; stroke: var(--orange); }
+
+        .section-header h2 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--brown);
+        }
+
+        .section-header .divider {
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--orange), var(--orange-light));
+            margin: 1rem auto 0;
+            border-radius: 1px;
+        }
+
+        /* ===== Gallery ===== */
+        .gallery {
+            background: var(--white);
+        }
+
+        .gallery-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            aspect-ratio: 1;
+            background: var(--cream);
+            box-shadow: 0 2px 12px var(--shadow);
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 12px 32px var(--shadow-md);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-item .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 60%, rgba(61, 37, 24, 0.3) 100%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .gallery-item:hover .overlay {
+            opacity: 1;
         }
 
         /* ===== Story Section ===== */
         .story {
-            padding: 4rem 2rem;
-            background: white;
+            background: var(--bg);
         }
 
-        .story-content {
+        .story-list {
             max-width: 700px;
             margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
         }
 
         .story-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 2rem 2.5rem;
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            box-shadow: 0 2px 16px var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .story-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px var(--shadow-md);
+        }
+
+        .story-icon {
+            flex-shrink: 0;
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             background: var(--cream);
-            border-radius: 20px;
-            padding: 2.5rem;
-            margin-bottom: 2rem;
-            position: relative;
-            border-left: 4px solid var(--orange);
+        }
+
+        .story-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--orange);
         }
 
         .story-card h3 {
             font-family: 'Noto Serif SC', serif;
-            font-size: 1.3rem;
-            color: var(--orange);
-            margin-bottom: 1rem;
+            font-size: 1.15rem;
+            color: var(--brown);
+            margin-bottom: 0.6rem;
+            font-weight: 600;
         }
 
         .story-card p {
-            line-height: 2;
-            color: var(--dark);
-            font-size: 1rem;
+            line-height: 1.9;
+            color: var(--brown-light);
+            font-size: 0.95rem;
         }
 
-        /* ===== Info Card ===== */
-        .info-section {
-            padding: 4rem 2rem;
-            max-width: 700px;
+        /* ===== Profile Card ===== */
+        .profile {
+            background: var(--white);
+        }
+
+        .profile-card {
+            max-width: 600px;
             margin: 0 auto;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--bg-warm) 100%);
+            border-radius: 24px;
+            padding: 3rem;
+            box-shadow: 0 4px 24px var(--shadow);
         }
 
-        .info-grid {
+        .profile-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 1.5rem;
-            margin-top: 2rem;
         }
 
-        .info-item {
-            background: white;
-            border-radius: 16px;
+        .profile-item {
+            background: var(--white);
+            border-radius: 14px;
             padding: 1.5rem;
             text-align: center;
-            box-shadow: 0 2px 15px rgba(139,94,60,0.08);
+            box-shadow: 0 1px 8px var(--shadow);
             transition: transform 0.3s;
         }
 
-        .info-item:hover { transform: translateY(-3px); }
+        .profile-item:hover { transform: translateY(-2px); }
 
-        .info-item .icon { font-size: 2rem; margin-bottom: 0.5rem; }
-
-        .info-item .label {
-            font-size: 0.85rem;
-            color: var(--orange);
-            margin-bottom: 0.3rem;
+        .profile-item .pi-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: var(--cream);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.8rem;
         }
 
-        .info-item .value {
+        .profile-item .pi-icon svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--orange);
+        }
+
+        .profile-item .pi-label {
+            font-size: 0.78rem;
+            color: var(--brown-light);
+            margin-bottom: 0.3rem;
+            letter-spacing: 0.05em;
+        }
+
+        .profile-item .pi-value {
             font-family: 'Noto Serif SC', serif;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             color: var(--brown);
-            font-weight: 700;
+            font-weight: 600;
         }
 
         /* ===== Letter Section ===== */
         .letter {
-            padding: 4rem 2rem;
-            background: linear-gradient(180deg, white 0%, var(--soft-pink) 100%);
+            background: linear-gradient(180deg, var(--white) 0%, var(--pink) 100%);
         }
 
-        .letter-content {
+        .letter-card {
             max-width: 600px;
             margin: 0 auto;
-            background: white;
+            background: var(--white);
             border-radius: 20px;
             padding: 3rem;
-            box-shadow: 0 4px 25px rgba(139,94,60,0.1);
+            box-shadow: 0 4px 24px var(--shadow);
             position: relative;
         }
 
-        .letter-content::before {
-            content: '"';
-            font-family: 'Noto Serif SC', serif;
-            font-size: 6rem;
-            color: var(--orange);
-            opacity: 0.2;
+        .letter-card .quote-mark {
             position: absolute;
-            top: 0.5rem;
-            left: 1.5rem;
-            line-height: 1;
+            top: 1.5rem;
+            left: 2rem;
+            width: 36px;
+            height: 36px;
+            opacity: 0.12;
+        }
+
+        .letter-card .quote-mark svg {
+            width: 100%;
+            height: 100%;
+            fill: var(--orange);
         }
 
         .letter-text {
             font-family: 'Noto Serif SC', serif;
             line-height: 2.2;
-            font-size: 1.05rem;
-            color: var(--dark);
+            font-size: 1.02rem;
+            color: var(--brown);
             text-indent: 2em;
+            margin-bottom: 1.2rem;
         }
 
         .letter-sign {
             text-align: right;
-            margin-top: 2rem;
             color: var(--orange);
-            font-style: italic;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 0.5rem;
         }
+
+        .letter-sign svg { width: 16px; height: 16px; stroke: var(--orange); }
 
         /* ===== Footer ===== */
         footer {
             text-align: center;
             padding: 3rem 2rem;
             background: var(--cream);
-            color: var(--brown);
-            opacity: 0.7;
-            font-size: 0.9rem;
         }
 
-        footer .paws { font-size: 1.5rem; margin-bottom: 1rem; letter-spacing: 0.5rem; }
+        footer .footer-icon {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        footer .footer-icon svg {
+            width: 18px;
+            height: 18px;
+            opacity: 0.3;
+        }
+
+        footer .footer-text {
+            font-size: 0.85rem;
+            color: var(--brown-light);
+            opacity: 0.6;
+        }
+
+        footer .footer-text a {
+            color: var(--orange);
+            text-decoration: none;
+        }
 
         /* ===== Responsive ===== */
-        @media (max-width: 600px) {
-            .hero h1 { font-size: 2.5rem; }
-            .info-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-            .story-card { padding: 1.5rem; }
-            .letter-content { padding: 2rem; }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.8rem; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+            .profile-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+            .story-card { flex-direction: column; gap: 1rem; padding: 1.5rem; }
+            .letter-card { padding: 2rem; }
+            nav .nav-links { display: none; }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 2.2rem; }
+            .hero .meta { flex-wrap: wrap; justify-content: center; }
+            .profile-card { padding: 2rem; }
         }
     </style>
 </head>
 <body>
 
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">
+            <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            元旦的小窝
+        </div>
+        <ul class="nav-links">
+            <li><a href="#gallery">照片</a></li>
+            <li><a href="#story">故事</a></li>
+            <li><a href="#profile">档案</a></li>
+            <li><a href="#letter">留言</a></li>
+        </ul>
+    </nav>
+
     <!-- Hero -->
     <section class="hero">
+        <div class="hero-bg"></div>
+
+        <!-- Decorative paw prints -->
+        <div class="paw-deco"><svg viewBox="0 0 512 512"><path d="M226.5 92.9c14.3 42.9-.3 86.2-32.6 96.8s-70.1-15.6-84.4-58.5c-14.3-42.9.3-86.2 32.6-96.8s70.1 15.6 84.4 58.5zM100.4 198.6c18.9 32.4 14.3 70.1-10.2 84.1s-59.7-.9-78.5-33.3C-7.2 217.1-2.6 179.3 21.9 165.4s59.7.9 78.5 33.2zm309.1-22.6c24.5-14 53.4-2.2 64.7 26.4s1.4 60.8-23.1 74.8c-24.5 14-53.4 2.2-64.7-26.4s-1.4-60.8 23.1-74.8zM298.5 128.9c-17 40.3-57.3 60.4-89.9 44.8s-41.2-56.8-24.2-97.2c17-40.3 57.3-60.4 89.9-44.8s41.2 56.8 24.2 97.2zM394.5 310c-32.6 10.3-62.4-11.4-66.4-48.5s20.3-69.1 52.9-79.4c32.6-10.3 62.4 11.4 66.4 48.5s-20.3 69.1-52.9 79.4zM256 224c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32zm-64 128c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32zm128 0c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32z"/></svg></div>
+        <div class="paw-deco"><svg viewBox="0 0 512 512"><path d="M226.5 92.9c14.3 42.9-.3 86.2-32.6 96.8s-70.1-15.6-84.4-58.5c-14.3-42.9.3-86.2 32.6-96.8s70.1 15.6 84.4 58.5zM100.4 198.6c18.9 32.4 14.3 70.1-10.2 84.1s-59.7-.9-78.5-33.3C-7.2 217.1-2.6 179.3 21.9 165.4s59.7.9 78.5 33.2zm309.1-22.6c24.5-14 53.4-2.2 64.7 26.4s1.4 60.8-23.1 74.8c-24.5 14-53.4 2.2-64.7-26.4s-1.4-60.8 23.1-74.8zM298.5 128.9c-17 40.3-57.3 60.4-89.9 44.8s-41.2-56.8-24.2-97.2c17-40.3 57.3-60.4 89.9-44.8s41.2 56.8 24.2 97.2zM394.5 310c-32.6 10.3-62.4-11.4-66.4-48.5s20.3-69.1 52.9-79.4c32.6-10.3 62.4 11.4 66.4 48.5s-20.3 69.1-52.9 79.4zM256 224c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32zm-64 128c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32zm128 0c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32z"/></svg></div>
+        <div class="paw-deco"><svg viewBox="0 0 512 512"><path d="M226.5 92.9c14.3 42.9-.3 86.2-32.6 96.8s-70.1-15.6-84.4-58.5c-14.3-42.9.3-86.2 32.6-96.8s70.1 15.6 84.4 58.5zM100.4 198.6c18.9 32.4 14.3 70.1-10.2 84.1s-59.7-.9-78.5-33.3C-7.2 217.1-2.6 179.3 21.9 165.4s59.7.9 78.5 33.2zm309.1-22.6c24.5-14 53.4-2.2 64.7 26.4s1.4 60.8-23.1 74.8c-24.5 14-53.4 2.2-64.7-26.4s-1.4-60.8 23.1-74.8zM298.5 128.9c-17 40.3-57.3 60.4-89.9 44.8s-41.2-56.8-24.2-97.2c17-40.3 57.3-60.4 89.9-44.8s41.2 56.8 24.2 97.2zM394.5 310c-32.6 10.3-62.4-11.4-66.4-48.5s20.3-69.1 52.9-79.4c32.6-10.3 62.4 11.4 66.4 48.5s-20.3 69.1-52.9 79.4zM256 224c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32zm-64 128c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32zm128 0c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32z"/></svg></div>
+        <div class="paw-deco"><svg viewBox="0 0 512 512"><path d="M226.5 92.9c14.3 42.9-.3 86.2-32.6 96.8s-70.1-15.6-84.4-58.5c-14.3-42.9.3-86.2 32.6-96.8s70.1 15.6 84.4 58.5zM100.4 198.6c18.9 32.4 14.3 70.1-10.2 84.1s-59.7-.9-78.5-33.3C-7.2 217.1-2.6 179.3 21.9 165.4s59.7.9 78.5 33.2zm309.1-22.6c24.5-14 53.4-2.2 64.7 26.4s1.4 60.8-23.1 74.8c-24.5 14-53.4 2.2-64.7-26.4s-1.4-60.8 23.1-74.8zM298.5 128.9c-17 40.3-57.3 60.4-89.9 44.8s-41.2-56.8-24.2-97.2c17-40.3 57.3-60.4 89.9-44.8s41.2 56.8 24.2 97.2zM394.5 310c-32.6 10.3-62.4-11.4-66.4-48.5s20.3-69.1 52.9-79.4c32.6-10.3 62.4 11.4 66.4 48.5s-20.3 69.1-52.9 79.4zM256 224c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32zm-64 128c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32zm128 0c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32z"/></svg></div>
+
         <div class="hero-content">
-            <div class="cat-emoji">🐱</div>
+            <div class="hero-avatar">
+                <img src="photos/yuandan1.jpg" alt="元旦">
+            </div>
             <h1>元旦</h1>
-            <p class="subtitle">一只叫元旦的小母猫 · 2岁</p>
+            <div class="meta">
+                <span style="display:flex;align-items:center;gap:0.4rem">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+                    小母猫
+                </span>
+                <span class="dot"></span>
+                <span style="display:flex;align-items:center;gap:0.4rem">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    2岁
+                </span>
+            </div>
             <p class="tagline">
                 她在某个元旦来到了我的生命里，<br>
                 从此每一年的开始都有了特殊的意义。
             </p>
         </div>
-        <div class="scroll-hint">↓</div>
+
+        <div class="scroll-indicator">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+        </div>
     </section>
 
     <!-- Gallery -->
-    <section class="gallery">
-        <h2 class="section-title">📸 元旦的日常</h2>
-        <div class="photo-grid">
-            <div class="photo-card">
-                <img src="photos/yuandan1.jpg" alt="元旦">
+    <section class="gallery" id="gallery">
+        <div class="section-header">
+            <div class="label">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                Gallery
             </div>
-            <div class="photo-card">
-                <img src="photos/yuandan2.jpg" alt="元旦">
-            </div>
-            <div class="photo-card">
-                <img src="photos/yuandan3.jpg" alt="元旦">
-            </div>
-            <div class="photo-card">
-                <img src="photos/yuandan4.jpg" alt="元旦">
-            </div>
-            <div class="photo-card">
-                <img src="photos/yuandan5.jpg" alt="元旦">
-            </div>
-            <div class="photo-card">
-                <img src="photos/yuandan6.jpg" alt="元旦">
-            </div>
+            <h2>元旦的日常</h2>
+            <div class="divider"></div>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item"><img src="photos/yuandan1.jpg" alt="元旦"><div class="overlay"></div></div>
+            <div class="gallery-item"><img src="photos/yuandan2.jpg" alt="元旦"><div class="overlay"></div></div>
+            <div class="gallery-item"><img src="photos/yuandan3.jpg" alt="元旦"><div class="overlay"></div></div>
+            <div class="gallery-item"><img src="photos/yuandan4.jpg" alt="元旦"><div class="overlay"></div></div>
+            <div class="gallery-item"><img src="photos/yuandan5.jpg" alt="元旦"><div class="overlay"></div></div>
+            <div class="gallery-item"><img src="photos/yuandan6.jpg" alt="元旦"><div class="overlay"></div></div>
         </div>
     </section>
 
     <!-- Story -->
-    <section class="story">
-        <div class="story-content">
-            <h2 class="section-title">📖 元旦的故事</h2>
-
-            <div class="story-card">
-                <h3>🌈 相遇</h3>
-                <p>元旦是在一个元旦前后来到我身边的。她小小的身体蜷缩成一团，眼睛却亮晶晶的，好像在说"你好呀"。从那天起，她就成了我生活中最温暖的存在。</p>
+    <section class="story" id="story">
+        <div class="section-header">
+            <div class="label">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                Story
             </div>
-
+            <h2>元旦的故事</h2>
+            <div class="divider"></div>
+        </div>
+        <div class="story-list">
             <div class="story-card">
-                <h3>😸 性格</h3>
-                <p>元旦是一只温柔的小母猫。她喜欢在阳光下打盹，喜欢追着逗猫棒跑来跑去，也喜欢在你工作的时候悄悄跳上桌子，趴在键盘旁边看你。她不会说话，但她的眼睛会告诉你一切。</p>
+                <div class="story-icon">
+                    <!-- Sparkle / star icon -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                </div>
+                <div>
+                    <h3>相遇</h3>
+                    <p>元旦是在一个元旦前后来到我身边的。她小小的身体蜷缩成一团，眼睛却亮晶晶的，好像在说"你好呀"。从那天起，她就成了我生活中最温暖的存在。</p>
+                </div>
             </div>
-
             <div class="story-card">
-                <h3>💛 现在</h3>
-                <p>因为没办法在外面租房子，元旦暂时没办法继续和我一起生活了。但我想让每一个看到这个页面的人认识她——她不是一只普通的猫，她是元旦，是我的家人。</p>
+                <div class="story-icon">
+                    <!-- Heart icon -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                </div>
+                <div>
+                    <h3>性格</h3>
+                    <p>元旦是一只温柔的小母猫。她喜欢在阳光下打盹，喜欢追着逗猫棒跑来跑去，也喜欢在你工作的时候悄悄跳上桌子，趴在键盘旁边看你。她不会说话，但她的眼睛会告诉你一切。</p>
+                </div>
+            </div>
+            <div class="story-card">
+                <div class="story-icon">
+                    <!-- Home icon -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                </div>
+                <div>
+                    <h3>现在</h3>
+                    <p>因为没办法在外面租房子，元旦暂时没办法继续和我一起生活了。但我想让每一个看到这个页面的人认识她——她不是一只普通的猫，她是元旦，是我的家人。</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Info -->
-    <section class="info-section">
-        <h2 class="section-title">📋 元旦档案</h2>
-        <div class="info-grid">
-            <div class="info-item">
-                <div class="icon">📛</div>
-                <div class="label">名字</div>
-                <div class="value">元旦</div>
+    <!-- Profile -->
+    <section class="profile" id="profile">
+        <div class="section-header">
+            <div class="label">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                Profile
             </div>
-            <div class="info-item">
-                <div class="icon">♀️</div>
-                <div class="label">性别</div>
-                <div class="value">小母猫</div>
-            </div>
-            <div class="info-item">
-                <div class="icon">🎂</div>
-                <div class="label">年龄</div>
-                <div class="value">2岁</div>
-            </div>
-            <div class="info-item">
-                <div class="icon">📅</div>
-                <div class="label">来到身边</div>
-                <div class="value">2024年元旦</div>
+            <h2>元旦档案</h2>
+            <div class="divider"></div>
+        </div>
+        <div class="profile-card">
+            <div class="profile-grid">
+                <div class="profile-item">
+                    <div class="pi-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </div>
+                    <div class="pi-label">名字</div>
+                    <div class="pi-value">元旦</div>
+                </div>
+                <div class="profile-item">
+                    <div class="pi-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+                    </div>
+                    <div class="pi-label">性别</div>
+                    <div class="pi-value">小母猫</div>
+                </div>
+                <div class="profile-item">
+                    <div class="pi-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                    </div>
+                    <div class="pi-label">年龄</div>
+                    <div class="pi-value">2岁</div>
+                </div>
+                <div class="profile-item">
+                    <div class="pi-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    </div>
+                    <div class="pi-label">来到身边</div>
+                    <div class="pi-value">2024年元旦</div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Letter -->
-    <section class="letter">
-        <div class="letter-content">
-            <h2 class="section-title">💌 写给元旦</h2>
-            <p class="letter-text">
-                元旦，虽然你现在不在我身边，但你永远是我心里最特别的那只猫。谢谢你陪我度过的每一个夜晚，谢谢你在我难过的时候蹭我的手心，谢谢你选择了我。
-            </p>
-            <p class="letter-text">
-                等我以后有了自己的家，一定把你接回来，再也不分开。
-            </p>
-            <p class="letter-sign">—— 你的铲屎官</p>
+    <section class="letter" id="letter">
+        <div class="section-header">
+            <div class="label">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                Letter
+            </div>
+            <h2>写给元旦</h2>
+            <div class="divider"></div>
+        </div>
+        <div class="letter-card">
+            <div class="quote-mark">
+                <svg viewBox="0 0 24 24"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
+            </div>
+            <p class="letter-text">元旦，虽然你现在不在我身边，但你永远是我心里最特别的那只猫。谢谢你陪我度过的每一个夜晚，谢谢你在我难过的时候蹭我的手心，谢谢你选择了我。</p>
+            <p class="letter-text">等我以后有了自己的家，一定把你接回来，再也不分开。</p>
+            <div class="letter-sign">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                你的铲屎官
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <div class="paws">🐾 🐾 🐾</div>
-        <p>元旦的小窝 · 用爱记录</p>
+        <div class="footer-icon">
+            <svg viewBox="0 0 512 512"><path d="M226.5 92.9c14.3 42.9-.3 86.2-32.6 96.8s-70.1-15.6-84.4-58.5c-14.3-42.9.3-86.2 32.6-96.8s70.1 15.6 84.4 58.5z"/></svg>
+            <svg viewBox="0 0 512 512"><path d="M226.5 92.9c14.3 42.9-.3 86.2-32.6 96.8s-70.1-15.6-84.4-58.5c-14.3-42.9.3-86.2 32.6-96.8s70.1 15.6 84.4 58.5z"/></svg>
+            <svg viewBox="0 0 512 512"><path d="M226.5 92.9c14.3 42.9-.3 86.2-32.6 96.8s-70.1-15.6-84.4-58.5c-14.3-42.9.3-86.2 32.6-96.8s70.1 15.6 84.4 58.5z"/></svg>
+        </div>
+        <p class="footer-text">元旦的小窝 · 用爱记录 · <a href="https://github.com/Jane-o-O-o-O/yuandan-cat" target="_blank">GitHub</a></p>
     </footer>
 
 </body>
