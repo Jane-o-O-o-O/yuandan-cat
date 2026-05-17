@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐱 元旦的小窝</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Noto+Sans+SC:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --warm: #FFF8F0;
+            --cream: #FFF3E4;
+            --orange: #F4845F;
+            --brown: #8B5E3C;
+            --dark: #3D2B1F;
+            --soft-pink: #FFE4E1;
+            --gold: #FFD700;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: var(--warm);
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        /* ===== Hero Section ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(180deg, var(--cream) 0%, var(--warm) 100%);
+            position: relative;
+            padding: 2rem;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at 20% 30%, rgba(244,132,95,0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 70%, rgba(255,215,0,0.06) 0%, transparent 50%);
+        }
+
+        .hero-content { position: relative; z-index: 1; }
+
+        .cat-emoji {
+            font-size: 5rem;
+            animation: bounce 2s ease-in-out infinite;
+            margin-bottom: 1rem;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .hero h1 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 3.5rem;
+            color: var(--brown);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.1em;
+        }
+
+        .hero .subtitle {
+            font-size: 1.2rem;
+            color: var(--orange);
+            font-weight: 300;
+            margin-bottom: 2rem;
+        }
+
+        .hero .tagline {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.1rem;
+            color: var(--brown);
+            opacity: 0.7;
+            max-width: 500px;
+            line-height: 1.8;
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 2rem;
+            animation: float 2s ease-in-out infinite;
+            font-size: 1.5rem;
+            opacity: 0.5;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(10px); }
+        }
+
+        /* ===== Photo Gallery ===== */
+        .gallery {
+            padding: 4rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 2rem;
+            text-align: center;
+            color: var(--brown);
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--orange);
+            margin: 0.8rem auto 0;
+            border-radius: 2px;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .photo-card {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(139,94,60,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            background: white;
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(139,94,60,0.2);
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .photo-card .placeholder {
+            font-size: 4rem;
+            opacity: 0.3;
+        }
+
+        /* ===== Story Section ===== */
+        .story {
+            padding: 4rem 2rem;
+            background: white;
+        }
+
+        .story-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .story-card {
+            background: var(--cream);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            border-left: 4px solid var(--orange);
+        }
+
+        .story-card h3 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.3rem;
+            color: var(--orange);
+            margin-bottom: 1rem;
+        }
+
+        .story-card p {
+            line-height: 2;
+            color: var(--dark);
+            font-size: 1rem;
+        }
+
+        /* ===== Info Card ===== */
+        .info-section {
+            padding: 4rem 2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .info-item {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 2px 15px rgba(139,94,60,0.08);
+            transition: transform 0.3s;
+        }
+
+        .info-item:hover { transform: translateY(-3px); }
+
+        .info-item .icon { font-size: 2rem; margin-bottom: 0.5rem; }
+
+        .info-item .label {
+            font-size: 0.85rem;
+            color: var(--orange);
+            margin-bottom: 0.3rem;
+        }
+
+        .info-item .value {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.1rem;
+            color: var(--brown);
+            font-weight: 700;
+        }
+
+        /* ===== Letter Section ===== */
+        .letter {
+            padding: 4rem 2rem;
+            background: linear-gradient(180deg, white 0%, var(--soft-pink) 100%);
+        }
+
+        .letter-content {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 4px 25px rgba(139,94,60,0.1);
+            position: relative;
+        }
+
+        .letter-content::before {
+            content: '"';
+            font-family: 'Noto Serif SC', serif;
+            font-size: 6rem;
+            color: var(--orange);
+            opacity: 0.2;
+            position: absolute;
+            top: 0.5rem;
+            left: 1.5rem;
+            line-height: 1;
+        }
+
+        .letter-text {
+            font-family: 'Noto Serif SC', serif;
+            line-height: 2.2;
+            font-size: 1.05rem;
+            color: var(--dark);
+            text-indent: 2em;
+        }
+
+        .letter-sign {
+            text-align: right;
+            margin-top: 2rem;
+            color: var(--orange);
+            font-style: italic;
+        }
+
+        /* ===== Footer ===== */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: var(--cream);
+            color: var(--brown);
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        footer .paws { font-size: 1.5rem; margin-bottom: 1rem; letter-spacing: 0.5rem; }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 2.5rem; }
+            .info-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+            .story-card { padding: 1.5rem; }
+            .letter-content { padding: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="cat-emoji">🐱</div>
+            <h1>元旦</h1>
+            <p class="subtitle">一只叫元旦的小母猫 · 2岁</p>
+            <p class="tagline">
+                她在某个元旦来到了我的生命里，<br>
+                从此每一年的开始都有了特殊的意义。
+            </p>
+        </div>
+        <div class="scroll-hint">↓</div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="gallery">
+        <h2 class="section-title">📸 元旦的日常</h2>
+        <div class="photo-grid">
+            <div class="photo-card">
+                <!-- 替换为真实照片：<img src="photos/yuandan1.jpg" alt="元旦"> -->
+                <span class="placeholder">🐾</span>
+            </div>
+            <div class="photo-card">
+                <span class="placeholder">🐾</span>
+            </div>
+            <div class="photo-card">
+                <span class="placeholder">🐾</span>
+            </div>
+            <div class="photo-card">
+                <span class="placeholder">🐾</span>
+            </div>
+            <div class="photo-card">
+                <span class="placeholder">🐾</span>
+            </div>
+            <div class="photo-card">
+                <span class="placeholder">🐾</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Story -->
+    <section class="story">
+        <div class="story-content">
+            <h2 class="section-title">📖 元旦的故事</h2>
+
+            <div class="story-card">
+                <h3>🌈 相遇</h3>
+                <p>元旦是在一个元旦前后来到我身边的。她小小的身体蜷缩成一团，眼睛却亮晶晶的，好像在说"你好呀"。从那天起，她就成了我生活中最温暖的存在。</p>
+            </div>
+
+            <div class="story-card">
+                <h3>😸 性格</h3>
+                <p>元旦是一只温柔的小母猫。她喜欢在阳光下打盹，喜欢追着逗猫棒跑来跑去，也喜欢在你工作的时候悄悄跳上桌子，趴在键盘旁边看你。她不会说话，但她的眼睛会告诉你一切。</p>
+            </div>
+
+            <div class="story-card">
+                <h3>💛 现在</h3>
+                <p>因为没办法在外面租房子，元旦暂时没办法继续和我一起生活了。但我想让每一个看到这个页面的人认识她——她不是一只普通的猫，她是元旦，是我的家人。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Info -->
+    <section class="info-section">
+        <h2 class="section-title">📋 元旦档案</h2>
+        <div class="info-grid">
+            <div class="info-item">
+                <div class="icon">📛</div>
+                <div class="label">名字</div>
+                <div class="value">元旦</div>
+            </div>
+            <div class="info-item">
+                <div class="icon">♀️</div>
+                <div class="label">性别</div>
+                <div class="value">小母猫</div>
+            </div>
+            <div class="info-item">
+                <div class="icon">🎂</div>
+                <div class="label">年龄</div>
+                <div class="value">2岁</div>
+            </div>
+            <div class="info-item">
+                <div class="icon">📅</div>
+                <div class="label">来到身边</div>
+                <div class="value">2024年元旦</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Letter -->
+    <section class="letter">
+        <div class="letter-content">
+            <h2 class="section-title">💌 写给元旦</h2>
+            <p class="letter-text">
+                元旦，虽然你现在不在我身边，但你永远是我心里最特别的那只猫。谢谢你陪我度过的每一个夜晚，谢谢你在我难过的时候蹭我的手心，谢谢你选择了我。
+            </p>
+            <p class="letter-text">
+                等我以后有了自己的家，一定把你接回来，再也不分开。
+            </p>
+            <p class="letter-sign">—— 你的铲屎官</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="paws">🐾 🐾 🐾</div>
+        <p>元旦的小窝 · 用爱记录</p>
+    </footer>
+
+</body>
+</html>
