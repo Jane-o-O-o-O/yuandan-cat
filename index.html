@@ -219,6 +219,143 @@
             50% { transform: translateX(-50%) translateY(8px); }
         }
 
+        /* ===== Welcome Story ===== */
+        .welcome-story {
+            max-width: 620px;
+            margin: 0 auto;
+            padding: 2.5rem 0 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .welcome-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            opacity: 0.5;
+        }
+
+        .welcome-divider .line {
+            width: 40px;
+            height: 1px;
+            background: var(--orange-light);
+        }
+
+        .welcome-divider svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--orange);
+            animation: heartPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes heartPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+
+        .welcome-greeting {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--brown);
+            text-align: center;
+            margin-bottom: 0.6rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .welcome-thanks {
+            text-align: center;
+            font-size: 0.95rem;
+            color: var(--brown-light);
+            margin-bottom: 1.8rem;
+            animation: fadeInUp 0.8s ease-out 0.1s both;
+        }
+
+        .welcome-body {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem 2.2rem;
+            box-shadow: 0 4px 24px rgba(92, 61, 46, 0.06);
+            border: 1px solid rgba(224, 124, 78, 0.08);
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .welcome-body .story-highlight {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.1rem;
+            line-height: 2;
+            color: var(--brown);
+            text-indent: 2em;
+            margin-bottom: 1rem;
+        }
+
+        .welcome-body .story-highlight em {
+            font-style: normal;
+            color: var(--orange);
+            font-weight: 600;
+        }
+
+        .welcome-body .story-text {
+            font-size: 0.95rem;
+            line-height: 2;
+            color: var(--brown-light);
+            text-indent: 2em;
+        }
+
+        .welcome-features {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.8rem;
+            justify-content: center;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .welcome-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--white);
+            padding: 0.6rem 1rem;
+            border-radius: 50px;
+            box-shadow: 0 2px 8px rgba(92, 61, 46, 0.06);
+            font-size: 0.82rem;
+            color: var(--brown);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .welcome-feature:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(92, 61, 46, 0.1);
+        }
+
+        .welcome-feature svg {
+            width: 16px;
+            height: 16px;
+            stroke: var(--orange);
+            flex-shrink: 0;
+        }
+
+        .welcome-more {
+            text-align: center;
+            margin-top: 2rem;
+            animation: fadeInUp 0.8s ease-out 0.5s both;
+        }
+
+        .welcome-more span {
+            font-size: 0.85rem;
+            color: var(--brown-light);
+            opacity: 0.6;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         /* ===== Section Shared ===== */
         section {
             padding: 5rem 2rem;
@@ -573,10 +710,49 @@
                     2岁
                 </span>
             </div>
-            <p class="tagline">
-                她在某个元旦来到了我的生命里，<br>
-                从此每一年的开始都有了特殊的意义。
-            </p>
+
+            <!-- Welcome Story -->
+            <div class="welcome-story">
+                <div class="welcome-divider">
+                    <span class="line"></span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                    <span class="line"></span>
+                </div>
+
+                <div class="welcome-greeting">Hello 👋 感谢你来看元旦</div>
+                <div class="welcome-thanks">你一定是一个非常善良的、爱小猫的人 🐱</div>
+
+                <div class="welcome-body">
+                    <p class="story-highlight">
+                        我是一个计算机学院的学生，元旦是我在<em>2026年1月1号</em>捡到的。
+                    </p>
+                    <p class="story-text">
+                        当时我在校外实习在外面租房，她是一只流浪猫，于是我让她领养到我的出租屋内。期间真的带给我了很多快乐和陪伴。
+                    </p>
+                    <p class="story-text">
+                        但是由于实习结束之后无力再去租房子，所以只能把它带到学校来养，这对我来说打击也很大。所以我在她身上安装了定位器，还为她设计了专门的网站。
+                    </p>
+                </div>
+
+                <div class="welcome-features">
+                    <div class="welcome-feature">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        装了定位器
+                    </div>
+                    <div class="welcome-feature">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                        专属网站
+                    </div>
+                    <div class="welcome-feature">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                        她是我的家人
+                    </div>
+                </div>
+
+                <div class="welcome-more">
+                    <span>↓ 下面是对她的一些介绍 ↓</span>
+                </div>
+            </div>
         </div>
 
         <div class="scroll-indicator">
@@ -676,7 +852,7 @@
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
                     </div>
                     <div class="pi-label">来到身边</div>
-                    <div class="pi-value">2024年元旦</div>
+                    <div class="pi-value">2026年元旦</div>
                 </div>
             </div>
         </div>
